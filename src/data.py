@@ -12,14 +12,7 @@ def clean_column_names(df):
     df.columns = df.columns.str.strip().str.lower().str.replace(' ', '_')
     return df
 
-# math_df_clean = clean_column_names(math_df)
-# portuguese_df_clean = clean_column_names(portuguese_df)
 
-# Display cleaned column names
-# print("\n---Math Cleaned Column Names ---")
-# print(*math_df_clean.columns, sep='    ')
-# print("\n---Portuguese Cleaned Column Names ---")
-# print(*portuguese_df_clean.columns, sep='    ')
 
 # check for missing values
 def check_missing_data(df_path):
@@ -48,16 +41,6 @@ def check_missing_data(df_path):
     print("="*30 + "\n")
 
 
-# check_missing_data(math_df_clean)
-# check_missing_data(portuguese_df_clean)
-#! there is no Missing values
-
-# split data into (train , val , test)
-# X_math = math_df_clean.drop('g3', axis=1)
-# y_math = math_df_clean['g3']
-
-# X_portuguese = portuguese_df_clean.drop('g3', axis=1)
-# y_portuguese = portuguese_df_clean['g3']
 
 def split_data(X, y, test_size=0.15, val_size= 0.15 , random_state=42):
     # First split into train+val and test
@@ -71,11 +54,6 @@ def split_data(X, y, test_size=0.15, val_size= 0.15 , random_state=42):
     
     return X_train, X_val, X_test, y_train, y_val, y_test
 
-# split the Math data 
-# X_train_math, X_val_math, X_test_math, y_train_math, y_val_math, y_test_math = split_data(X_math, y_math)
-
-# # split the Portuguese data
-# X_train_port, X_val_port, X_test_port, y_train_port, y_val_port, y_test_port = split_data(X_portuguese, y_portuguese)
 
 
 def print_split_shapes(name, X_train, X_val, X_test, y_train, y_val, y_test):
@@ -88,17 +66,6 @@ def print_split_shapes(name, X_train, X_val, X_test, y_train, y_val, y_test):
     print(f"X_test : {X_test.shape}")
     print(f"y_test : {y_test.shape}")
 
-# print_split_shapes(
-#     "Math",
-#     X_train_math, X_val_math, X_test_math,
-#     y_train_math, y_val_math, y_test_math
-# )
-
-# print_split_shapes(
-#     "Portuguese",
-#     X_train_port, X_val_port, X_test_port,
-#     y_train_port, y_val_port, y_test_port
-# )*/
 
 
 def load_and_split_data(file_path, target_column='g3', test_size=0.15, val_size=0.15 , random_state=42):
@@ -108,7 +75,6 @@ def load_and_split_data(file_path, target_column='g3', test_size=0.15, val_size=
     # Clean column names
     df = clean_column_names(df)
     
-    # check_missing_data(df)
     # Split features and target
     X = df.drop(target_column, axis=1)
     y = df[target_column]
